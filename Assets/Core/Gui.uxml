@@ -1,0 +1,71 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Menu" src="project://database/Assets/Core/Menu.uxml?fileID=9197481963319205126&amp;guid=daa00a3f53b152e47bfd470312885859&amp;type=3#Menu" />
+    <Style src="project://database/Assets/Core/Gui.uss?fileID=7433441132597879392&amp;guid=00751e3bb6650244bbe8e82782948fd0&amp;type=3#Gui" />
+    <Style src="project://database/Assets/Core/Menu.uss?fileID=7433441132597879392&amp;guid=ab2a67656633b514ba842cc499587d62&amp;type=3#Menu" />
+    <ui:VisualElement name="root">
+        <ui:VisualElement name="FPS">
+            <ui:Label text="帧率" display-tooltip-when-elided="true" />
+            <ui:Label display-tooltip-when-elided="true" name="FPSLabel" text="60" />
+        </ui:VisualElement>
+        <Core.Utils.Blur name="menu-btn" focusable="true" class="blur-box hover-box menu-btn open">
+            <ui:VisualElement class="box">
+                <ui:VisualElement class="item i1" />
+                <ui:VisualElement class="item i2" />
+                <ui:VisualElement class="item i3" />
+            </ui:VisualElement>
+        </Core.Utils.Blur>
+        <Core.Utils.Blur name="time" class="blur-box">
+            <ui:VisualElement class="box">
+                <ui:VisualElement name="play" focusable="true" class="hover-box pause">
+                    <ui:VisualElement class="box">
+                        <ui:VisualElement class="item i1" />
+                        <ui:VisualElement class="item i2" />
+                        <ui:VisualElement class="item i3" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="split" />
+                <ui:VisualElement name="speed-1x" focusable="true" class="speed-btn hover-box select">
+                    <ui:VisualElement class="box">
+                        <ui:Label tabindex="-1" text="1X" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="split2" />
+                <ui:VisualElement name="speed-2x" focusable="true" class="speed-btn hover-box">
+                    <ui:VisualElement class="box">
+                        <ui:Label tabindex="-1" text="2X" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="split2" />
+                <ui:VisualElement name="speed-5x" focusable="true" class="speed-btn hover-box">
+                    <ui:VisualElement class="box">
+                        <ui:Label tabindex="-1" text="5X" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="split2" />
+                <ui:VisualElement name="speed-10x" focusable="true" class="speed-btn hover-box">
+                    <ui:VisualElement class="box">
+                        <ui:Label tabindex="-1" text="10X" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="split2" />
+                <ui:VisualElement name="speed-100x" focusable="true" class="speed-btn hover-box">
+                    <ui:VisualElement class="box">
+                        <ui:Label tabindex="-1" text="100X" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="split" />
+                <ui:VisualElement name="speed" class="hover-box">
+                    <ui:VisualElement class="box">
+                        <ui:Label tabindex="-1" text="倍速" display-tooltip-when-elided="true" />
+                        <ui:FloatField tabindex="100" value="1" name="speed-input" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </Core.Utils.Blur>
+        <Core.Utils.Blur name="menu" class="blur-box open">
+            <ui:VisualElement class="box">
+                <ui:Instance template="Menu" name="menus" />
+            </ui:VisualElement>
+        </Core.Utils.Blur>
+    </ui:VisualElement>
+</ui:UXML>

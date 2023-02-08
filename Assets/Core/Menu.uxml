@@ -1,0 +1,108 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="OptionIcon" src="project://database/Assets/Core/Icons/OptionIcon.uxml?fileID=9197481963319205126&amp;guid=d1e3606199dc01f47b86bc2fb036310a&amp;type=3#OptionIcon" />
+    <Style src="project://database/Assets/Core/Gui.uss?fileID=7433441132597879392&amp;guid=00751e3bb6650244bbe8e82782948fd0&amp;type=3#Gui" />
+    <Style src="project://database/Assets/Core/Menu.uss?fileID=7433441132597879392&amp;guid=ab2a67656633b514ba842cc499587d62&amp;type=3#Menu" />
+    <ui:VisualElement name="menu-root" class="menu-block">
+        <ui:ScrollView vertical-scroller-visibility="AlwaysVisible" horizontal-scroller-visibility="Hidden" class="box scroll-box">
+            <ui:VisualElement class="split-space" />
+            <ui:VisualElement name="option-item" class="menu-item list-item hover-box">
+                <ui:VisualElement class="box">
+                    <ui:Instance template="OptionIcon" name="OptionIcon" />
+                    <ui:Label tabindex="-1" text="选项（还没做）" display-tooltip-when-elided="true" style="translate: 0 -2px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="split-line" />
+            <ui:VisualElement name="init-btns">
+                <ui:Button name="start-btn" text="随机生成" display-tooltip-when-elided="true" class="menu-oper-btn" />
+                <ui:VisualElement class="split" />
+                <ui:Button name="seed-start-btn" text="种子生成" display-tooltip-when-elided="true" class="menu-oper-btn" />
+                <ui:VisualElement class="split" />
+                <ui:Button name="stop-btn" text="停止模拟" display-tooltip-when-elided="true" class="menu-oper-btn" />
+            </ui:VisualElement>
+            <ui:VisualElement class="split-line" />
+            <ui:VisualElement name="init-params">
+                <ui:VisualElement class="menu-item input-item">
+                    <ui:VisualElement class="box">
+                        <ui:VisualElement class="input-field-like">
+                            <ui:Label tabindex="-1" text="随机种子" display-tooltip-when-elided="true" />
+                            <ui:VisualElement class="inner-item" style="width: 350px;">
+                                <ui:TextField name="seed-input" value="12345" class="input-field input-field-inner num-font" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="inner-split" />
+                            <ui:VisualElement class="inner-item">
+                                <ui:Button name="re-gen-seed-btn" text="生成" display-tooltip-when-elided="true" class="menu-oper-btn" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="menu-item input-item">
+                    <ui:VisualElement class="box">
+                        <ui:IntegerField name="count-input" label="生成数量" value="100" class="input-field" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="menu-item input-item">
+                    <ui:VisualElement class="box">
+                        <ui:VisualElement class="input-field-like">
+                            <ui:Label tabindex="-1" text="速度上限" display-tooltip-when-elided="true" />
+                            <ui:VisualElement class="inner-item" style="width: 350px;">
+                                <ui:FloatField name="speed-limit-input" value="299792458" class="input-field input-field-inner" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="inner-split" />
+                            <ui:VisualElement class="inner-item">
+                                <ui:Button name="re-set-speed-limit-btn" text="光速" display-tooltip-when-elided="true" class="menu-oper-btn" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="menu-item input-item">
+                    <ui:VisualElement class="box">
+                        <ui:FloatField name="space-size-input" label="生成时空间大小" value="1000" class="input-field" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="menu-item input-item">
+                    <ui:VisualElement class="box">
+                        <ui:VisualElement class="input-field-like">
+                            <ui:Label tabindex="-1" text="重量范围" display-tooltip-when-elided="true" />
+                            <ui:VisualElement class="inner-item">
+                                <ui:FloatField name="min-weight-input" label="最小" value="10" class="input-field input-field-inner" style="width: 260px;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="inner-split" />
+                            <ui:VisualElement class="inner-item">
+                                <ui:FloatField name="max-weight-input" label="最大" value="100" class="input-field input-field-inner" style="width: 260px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="menu-item input-item">
+                    <ui:VisualElement class="box">
+                        <ui:VisualElement class="input-field-like">
+                            <ui:Label tabindex="-1" text="初始速度" display-tooltip-when-elided="true" />
+                            <ui:VisualElement class="inner-item">
+                                <ui:FloatField name="min-velocity-input" label="最小" value="0" class="input-field input-field-inner" style="width: 260px;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="inner-split" />
+                            <ui:VisualElement class="inner-item">
+                                <ui:FloatField name="max-velocity-input" label="最大" value="10" class="input-field input-field-inner" style="width: 260px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="height: 300px;"/>
+            <ui:VisualElement class="bottom" style="width: 100%; position: absolute; bottom: 0;">
+                <ui:VisualElement name="version-item" class="menu-item menu-item-btn">
+                    <ui:VisualElement class="box">
+                        <ui:Label name="proj-name-label" tabindex="-1" text="多体基准测试" display-tooltip-when-elided="true" />
+                        <ui:Label name="version-label" tabindex="-1" text="v0.0.0" display-tooltip-when-elided="true" />
+                        <ui:Label name="proj-repo-label" tabindex="-1" text="项目地址" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="exit-btn" class="menu-item menu-item-btn hover-box">
+                    <ui:VisualElement class="box">
+                        <ui:Label tabindex="-1" text="退出到桌面" display-tooltip-when-elided="true" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

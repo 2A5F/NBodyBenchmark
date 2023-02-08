@@ -1,0 +1,213 @@
+.menu-block {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.menu-block > .scroll-box {
+    flex-grow: 1;
+}
+
+.menu-block > .scroll-box > #unity-content-and-vertical-scroll-container > #unity-content-viewport > #unity-content-container {
+    flex-grow: 1;
+    transition: translate 0.1s;
+}
+
+.menu-block .unity-scroller #unity-low-button,
+.menu-block .unity-scroller #unity-high-button {
+    opacity: 0;
+}
+
+.menu-block .unity-scroller,
+.menu-block .unity-scroller #unity-slider {
+    min-width: 25px;
+    min-height: 25px;
+}
+
+.menu-block .unity-scroller #unity-tracker {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+.menu-block .unity-scroller #unity-dragger {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+    transition: background-color 0.25s, width 0.1s, height 0.1s, border-radius 0.25s, translate 0.1s;
+}
+
+.menu-block .unity-scroller:hover #unity-dragger {
+    width: 15px;
+    height: 15px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu-item {
+    min-height: 100px;
+}
+
+.menu-item > .box {
+    flex-grow: 1;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 50px;
+}
+
+.list-item > .box > Label {
+    flex-grow: 1;
+    padding: 0 25px;
+}
+
+.menu-item-btn > .box {
+    justify-content: center;
+}
+
+.menu-item-btn > .box > Label {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    -unity-font: url('project://database/Assets/Core/Fonts/SourceHanSans/SourceHanSans-Light.ttc?fileID=12800000&guid=9b679506051af924698ea1a31b229442&type=3#SourceHanSans-Light');
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/SourceHanSans/SourceHanSans-Light%20SDF.asset?fileID=11400000&guid=2359de4cc14440f439fe8af86713aac0&type=2#SourceHanSans-Light SDF');
+}
+
+.input-item > .box .input-field,
+.input-item > .box .input-field-like {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.input-item > .box #unity-text-input {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.input-item > .box .input-field #unity-text-input {
+    flex-grow: 1;
+    min-width: 0;
+    height: 60px;
+    border-width: 2px;
+    border-radius: 15px;
+    border-color: rgba(255, 255, 255, 0.03);
+    padding: 0 15px;
+    transition: border-color 0.25s;
+}
+
+.input-item > .box .input-field:hover #unity-text-input {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.input-item > .box .input-field > Label,
+.input-item > .box .input-field-like > Label {
+    color: rgb(255, 255, 255);
+    min-width: 300px;
+}
+
+.input-item > .box .input-field-like .inner-item {
+    flex-grow: 1;
+}
+
+.input-item > .box .input-field-like .inner-split {
+    width: 30px;
+}
+
+.input-item > .box .input-field-inner {
+    max-width: 100%;
+}
+
+.input-item > .box .input-field-inner > Label {
+    min-width: 0;
+    padding-right: 20px;
+}
+
+.input-item > .box .unity-integer-field #unity-text-input,
+.input-item > .box .unity-float-field #unity-text-input,
+.num-font {
+    -unity-font: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular.ttf?fileID=12800000&guid=a71334ede704afb48b507215a1a934c5&type=3#FiraCode-Regular');
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular%20SDF%201.asset?fileID=11400000&guid=be5771fda8c21c64aa349d484b97b971&type=2#FiraCode-Regular SDF 1');
+}
+
+.menu-oper-btn {
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.0125);
+    border-color: rgba(255, 255, 255, 0.025);
+    border-width: 2px;
+    border-radius: 15px;
+    transition: background-color 0.25s, border-color 0.25s;
+}
+
+.menu-oper-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.split-space {
+    width: 70%;
+    height: 2px;
+    border-radius: 1px;
+    background-color: rgba(255, 255, 255, 0);
+    align-self: center;
+    margin: 25px 0;
+}
+
+.split-line {
+    width: 70%;
+    height: 2px;
+    border-radius: 1px;
+    background-color: rgba(255, 255, 255, 0);
+    align-self: center;
+    margin: 25px 0;
+}
+
+.split-line {
+    margin: 50px 0;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+#exit-btn {
+    color: rgb(255, 63, 93);
+}
+
+#version-item {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.25);
+    text-shadow: 0 0 2px rgb(0, 0, 0);
+}
+
+#version-item > .box {
+    align-items: center;
+    justify-content: center;
+}
+
+#version-item > .box > Label {
+    margin: 0 10px;
+    flex-grow: 0;
+}
+
+#proj-repo-label {
+    transition: color 0.25s;
+}
+
+#version-label {
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular%20SDF%201.asset?fileID=11400000&guid=be5771fda8c21c64aa349d484b97b971&type=2#FiraCode-Regular SDF 1');
+    -unity-font: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular.ttf?fileID=12800000&guid=a71334ede704afb48b507215a1a934c5&type=3#FiraCode-Regular');
+}
+
+#proj-repo-label:hover {
+    color: rgba(62, 129, 255, 0.5);
+}
+
+#init-btns {
+    flex-direction: row;
+    padding: 0 50px;
+}
+
+#init-btns .menu-oper-btn {
+    flex-grow: 1;
+    height: 70px;
+}
+
+#init-btns .split {
+    width: 35px;
+}

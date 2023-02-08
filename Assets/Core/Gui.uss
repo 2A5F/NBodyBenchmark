@@ -1,0 +1,253 @@
+#root, .menu-block {
+    width: 100%;
+    height: 100%;
+    font-size: 32px;
+    text-shadow: 0 0 5px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    -unity-font: url('project://database/Assets/Core/Fonts/SourceHanSans/SourceHanSans-Regular.ttc?fileID=12800000&guid=4bad238cf35a3914da2f6f46ec15e8f9&type=3#SourceHanSans-Regular');
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/SourceHanSans/SourceHanSans-Regular%20SDF.asset?fileID=11400000&guid=b73ff4e05475a7b48a040ce9ce24ac84&type=2#SourceHanSans-Regular SDF');
+}
+
+#FPS {
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 10px;
+    flex-direction: row;
+    align-items: center;
+}
+
+#FPS > #FPSLabel {
+    -unity-font: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular.ttf?fileID=12800000&guid=a71334ede704afb48b507215a1a934c5&type=3#FiraCode-Regular');
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular%20SDF%201.asset?fileID=11400000&guid=be5771fda8c21c64aa349d484b97b971&type=2#FiraCode-Regular SDF 1');
+    -unity-text-align: middle-left;
+    top: 2px;
+}
+
+.blur-box > .blur-box-container {
+    background-color: rgba(23, 23, 23, 0.5);
+}
+
+.blur-box > .box {
+    flex-grow: 1;
+}
+
+.hover-box > .box {
+    flex-grow: 1;
+}
+
+.hover-box > .box {
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0);
+    transition: border-color 0.25s;
+}
+
+.hover-box:hover > .box {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+#menu-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.menu-btn {
+    width: 100px;
+    height: 100px;
+}
+
+.menu-btn > .box {
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-btn .item {
+    width: 35px;
+    height: 2px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 1px;
+    transform-origin: right;
+    transition: translate 0.25s, opacity 0.25s, width 0.25s, rotate 0.25s, scale 0.25s;
+}
+
+.menu-btn .item.i2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.menu-btn.open .item.i1 {
+    width: 30px;
+    translate: 0 12.5px;
+    rotate: 45deg;
+}
+
+.menu-btn.open .item.i2 {
+    opacity: 0;
+    scale: 0;
+}
+
+.menu-btn.open .item.i3 {
+    width: 30px;
+    translate: 0 -12.5px;
+    rotate: -45deg;
+}
+
+#menu {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    bottom: 0;
+    min-width: 1000px;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+#menu.open {
+    opacity: 1;
+}
+
+#menu > .box > #menus {
+    flex-grow: 1;
+    translate: 100% 0;
+    transition: translate 0.25s;
+}
+
+#menu.open > .box > #menus {
+    translate: 0 0;
+}
+
+#time {
+    position: absolute;
+    top: 0;
+    right: 100px;
+    width: 900px;
+    height: 100px;
+}
+
+#time > .box {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#time > .box > .split {
+    width: 2px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    align-self: center;
+    margin: 0 10px;
+}
+
+#time > .box > .split2 {
+    width: 2px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    align-self: center;
+    margin: 0 2px;
+}
+
+#time > .box > #play {
+    width: 100px;
+    height: 100px;
+}
+
+#time > .box > #play > .box {
+    align-items: center;
+    justify-content: center;
+}
+
+#time > .box > #play > .box > .item {
+    width: 35px;
+    height: 2px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 1px;
+    transition: translate 0.25s, opacity 0.25s, width 0.25s, rotate 0.25s, scale 0.25s;
+}
+
+#time > .box > #play > .box > .item.i1 {
+    rotate: 30deg;
+    translate: 2px -6.5px;
+}
+
+#time > .box > #play > .box > .item.i2 {
+    rotate: 90deg;
+    translate: -12.5px 0;
+}
+
+#time > .box > #play > .box > .item.i3 {
+    rotate: -30deg;
+    translate: 2px 6.5px;
+}
+
+#time > .box > #play.pause > .box > .item.i1 {
+    rotate: 90deg;
+    translate: -10px 2px;
+}
+
+#time > .box > #play.pause > .box > .item.i2 {
+    opacity: 0;
+}
+
+#time > .box > #play.pause > .box > .item.i3 {
+    rotate: -90deg;
+    translate: 10px -2px;
+}
+
+#time > .box > .speed-btn {
+    width: 100px;
+    height: 100px;
+}
+
+#time > .box > .speed-btn > .box {
+    align-items: center;
+    justify-content: center;
+}
+
+#time > .box > .speed-btn > .box > Label {
+    -unity-font: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular.ttf?fileID=12800000&guid=a71334ede704afb48b507215a1a934c5&type=3#FiraCode-Regular');
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular%20SDF%201.asset?fileID=11400000&guid=be5771fda8c21c64aa349d484b97b971&type=2#FiraCode-Regular SDF 1');
+    -unity-text-align: middle-left;
+    transition: color 0.25s, border-bottom-color 0.25s, translate 0.25s;
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0, 0, 0, 0);
+    translate: 0 2px;
+}
+
+#time > .box > .speed-btn.select > .box > Label {
+    color: rgb(171, 78, 92);
+    border-bottom-color: rgba(171, 78, 92, 0.5);
+}
+
+#time > .box > #speed {
+    flex-grow: 1;
+    height: 100px;
+}
+
+#time > .box > #speed > .box {
+    flex-direction: row;
+    padding-left: 10px;
+}
+
+#time > .box > #speed > .box > Label {
+    -unity-text-align: middle-left;
+    translate: 0 -3.5px;
+    -unity-font: url('project://database/Assets/Core/Fonts/SourceHanSans/SourceHanSans-Light.ttc?fileID=12800000&guid=9b679506051af924698ea1a31b229442&type=3#SourceHanSans-Light');
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/SourceHanSans/SourceHanSans-Light%20SDF.asset?fileID=11400000&guid=2359de4cc14440f439fe8af86713aac0&type=2#SourceHanSans-Light SDF');
+}
+
+#time > .box > #speed > .box > #speed-input {
+    flex-grow: 1;
+}
+
+#time > .box > #speed > .box > #speed-input #unity-text-input {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+#time > .box > #speed > .box > #speed-input #unity-text-input .unity-text-element {
+    -unity-text-align: middle-center;
+    -unity-font: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular.ttf?fileID=12800000&guid=a71334ede704afb48b507215a1a934c5&type=3#FiraCode-Regular');
+    -unity-font-definition: url('project://database/Assets/Core/Fonts/FiraCode/FiraCode-Regular%20SDF%201.asset?fileID=11400000&guid=be5771fda8c21c64aa349d484b97b971&type=2#FiraCode-Regular SDF 1');
+}

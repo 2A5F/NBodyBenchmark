@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Core/Icons/OptionIcon.uss?fileID=7433441132597879392&amp;guid=adb71748371ee024d809055438160632&amp;type=3#OptionIcon" />
+    <ui:VisualElement class="icon-option">
+        <ui:VisualElement class="center"/>
+        <ui:VisualElement class="item i1"><ui:VisualElement class="i"/></ui:VisualElement>
+        <ui:VisualElement class="item i2"><ui:VisualElement class="i"/></ui:VisualElement>
+        <ui:VisualElement class="item i3"><ui:VisualElement class="i"/></ui:VisualElement>
+        <ui:VisualElement class="item i4"><ui:VisualElement class="i"/></ui:VisualElement>
+        <ui:VisualElement class="item i5"><ui:VisualElement class="i"/></ui:VisualElement>
+        <ui:VisualElement class="item i6"><ui:VisualElement class="i"/></ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

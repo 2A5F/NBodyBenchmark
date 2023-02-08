@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Core/Icons/RightNext.uss?fileID=7433441132597879392&amp;guid=da3ac995077f2f54ab2a869cf611079a&amp;type=3#RightNext" />
+    <ui:VisualElement class="icon-right-next">
+        <ui:VisualElement class="item i1" />
+        <ui:VisualElement class="item i2" />
+    </ui:VisualElement>
+</ui:UXML>

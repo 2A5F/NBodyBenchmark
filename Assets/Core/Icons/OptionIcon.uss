@@ -1,0 +1,53 @@
+.icon-option {
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-option > .center {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: rgb(200, 200, 200);
+}
+
+.icon-option > .item {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+}
+
+.icon-option > .item > .i {
+    width: 18px;
+    height: 2px;
+    background-color: rgb(200, 200, 200);
+    border-radius: 1px;
+}
+
+.icon-option > .item.i1 {
+    rotate: 0;
+}
+
+.icon-option > .item.i2 {
+    rotate: 60deg;
+}
+
+.icon-option > .item.i3{
+    rotate: 120deg;
+}
+
+.icon-option > .item.i4{
+    rotate: 180deg;
+}
+
+.icon-option > .item.i5{
+    rotate: 240deg;
+}
+
+.icon-option > .item.i6{
+    rotate: 300deg;
+}
