@@ -163,13 +163,13 @@ namespace Core
 
         private void OnMinVelocityChange(ChangeEvent<float> e)
         {
-            init.minVelocity = math.max(e.newValue, 0.1f);
+            init.minVelocity = math.max(e.newValue, 0f);
             UpdateInputs();
         }
 
         private void OnMaxVelocityChange(ChangeEvent<float> e)
         {
-            init.maxVelocity = math.max(e.newValue, 0.1f);
+            init.maxVelocity = math.max(e.newValue, 0f);
             UpdateInputs();
         }
 
