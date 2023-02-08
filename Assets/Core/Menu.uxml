@@ -13,9 +13,9 @@
             </ui:VisualElement>
             <ui:VisualElement class="split-line" />
             <ui:VisualElement name="init-btns">
-                <ui:Button name="start-btn" text="随机生成" display-tooltip-when-elided="true" class="menu-oper-btn" />
+                <ui:Button name="start-btn" text="随机重开" display-tooltip-when-elided="true" class="menu-oper-btn" />
                 <ui:VisualElement class="split" />
-                <ui:Button name="seed-start-btn" text="种子生成" display-tooltip-when-elided="true" class="menu-oper-btn" />
+                <ui:Button name="seed-start-btn" text="种子重开" display-tooltip-when-elided="true" class="menu-oper-btn" />
                 <ui:VisualElement class="split" />
                 <ui:Button name="stop-btn" text="停止模拟" display-tooltip-when-elided="true" class="menu-oper-btn" />
             </ui:VisualElement>
