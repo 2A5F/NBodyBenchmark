@@ -1,0 +1,33 @@
+#pragma kernel init
+
+#include "../Utils/random.hlsl"
+#include "./Body.hlsl"
+
+BODY_INIT_PARAM(init_param)
+
+RWStructuredBuffer<Body> bodies;
+RWStructuredBuffer<BodyRender> renders;
+RWStructuredBuffer<BodyVelocity> velocities;
+
+[numthreads(1024,1,1)]
+void init(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= count) return;
+    random rand = random::create_from_index(seed + id.x);
+
+    const float3 pos = rand.next_float3(-space_size, space_size);
+    const float weight = rand.next_float(weight_range.x, weight_range.y);
+    const float3 color = rand.next_float3(0.5f, 2.5f);
+
+    const float3 velocity = normalize(rand.next_float3(-1, 1)) * rand.next_float3(velocity_range.x, velocity_range.y);
+
+    const float scale = pow(weight, 0.5f);
+
+    const Body body = {weight, scale};
+    const BodyRender body_render = {pos, color};
+    const BodyVelocity body_velocity = {velocity};
+
+    bodies[id.x] = body;
+    renders[id.x] = body_render;
+    velocities[id.x] = body_velocity;
+}

@@ -96,7 +96,7 @@ namespace Core
 
             UpdateInputs();
             ReGenSeed();
-            ReInit();
+            // ReInit();
         }
 
         private void OnClickStartBtn(ClickEvent e)

@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4645219866054810211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea77d6e1a5be4fac968124f2bb669526, type: 3}
+  m_Name: BodyFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  render: {fileID: 11400000, guid: e70967db6abf5fd47b2e90891a1f2a16, type: 2}
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,7 +67,8 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
   - {fileID: 4043254652721354399}
-  m_RendererFeatureMap: adc0de57c6d2eee59fd6e63faf861c38
+  - {fileID: -4645219866054810211}
+  m_RendererFeatureMap: adc0de57c6d2eee59fd6e63faf861c389d2537ac24dd88bf
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
