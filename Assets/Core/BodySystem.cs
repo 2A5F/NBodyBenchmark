@@ -128,13 +128,18 @@ namespace Core
 
                 var distance = math.distancesq(lastPos, selfLastPos);
                 if (distance < math.pow(math.max(size, selfDef.size), 2)) continue;
-                // var force = weight * selfWeight / distance;
                 var force = weight / distance;
                 var direct = math.normalize(lastPos - selfLastPos);
                 var velocity = direct * force * delta;
 
                 selfVelocity.velocity += velocity;
-                selfVelocity.velocity = math.min(selfVelocity.velocity, speedLimit);
+                
+                // see Vector3.ClampMagnitude()
+                var len_sq = math.lengthsq(selfVelocity.velocity);
+                if (len_sq > speedLimit * speedLimit)
+                {
+                    selfVelocity.velocity = selfVelocity.velocity / math.sqrt(len_sq) * speedLimit;
+                }
             }
         }
     }

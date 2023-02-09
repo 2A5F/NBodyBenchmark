@@ -65,13 +65,15 @@ namespace Core
             UpdateSpeed();
 
             versionLabel.text = $"v{Application.version}";
-            
+
             projRepoLabel.RegisterCallback<ClickEvent>(OnClickProjRepoLabel);
 
             exitBtn.RegisterCallback<ClickEvent>(OnClickExitBtn);
         }
 
-        public bool MouseOnCover => menu_btn.MouseOn || time.MouseOn || (menu.MouseOn && openMenu);
+        public bool MouseOnCover => menu_btn.MouseOn || time.MouseOn || MouseOnMenu;
+
+        public bool MouseOnMenu => menu.MouseOn && openMenu;
 
         private bool openMenu;
         private bool playing = true;
@@ -121,6 +123,7 @@ namespace Core
 
         public void OnTogglePlay(InputAction.CallbackContext context)
         {
+            if (openMenu) return;
             if (context.phase != InputActionPhase.Performed) return;
             TogglePlay();
         }
@@ -163,30 +166,35 @@ namespace Core
 
         public void OnSelectSpeed1(InputAction.CallbackContext context)
         {
+            if (openMenu) return;
             if (context.phase != InputActionPhase.Performed) return;
             SetSpeed(1);
         }
 
         public void OnSelectSpeed2(InputAction.CallbackContext context)
         {
+            if (openMenu) return;
             if (context.phase != InputActionPhase.Performed) return;
             SetSpeed(2);
         }
 
         public void OnSelectSpeed5(InputAction.CallbackContext context)
         {
+            if (openMenu) return;
             if (context.phase != InputActionPhase.Performed) return;
             SetSpeed(5);
         }
 
         public void OnSelectSpeed10(InputAction.CallbackContext context)
         {
+            if (openMenu) return;
             if (context.phase != InputActionPhase.Performed) return;
             SetSpeed(10);
         }
 
         public void OnSelectSpeed100(InputAction.CallbackContext context)
         {
+            if (openMenu) return;
             if (context.phase != InputActionPhase.Performed) return;
             SetSpeed(100);
         }
@@ -239,7 +247,7 @@ namespace Core
         }
 
         #endregion
-        
+
         #region exit-btn
 
         private void OnClickExitBtn(ClickEvent e)
