@@ -1,10 +1,10 @@
+using Latios.Transforms;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Rendering;
-using Unity.Transforms;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
@@ -21,6 +21,7 @@ namespace Core
                 new EntityQueryBuilder(Allocator.Temp).WithAll<Init>().WithNone<Inited>().Build(ref state)
             );
             state.RequireForUpdate<InitPrefab>();
+            state.RequireForUpdate<Init>();
         }
 
         [BurstCompile]
@@ -73,17 +74,12 @@ namespace Core
             var scale = math.pow(weight, 0.5f);
 
             var body = ecb.Instantiate(0, prefab.bodyPrefab);
+            var trans = TransformQvvs.identity;
+            trans.position = pos;
+            trans.scale = scale;
             ecb.SetComponent(1, body, new WorldTransform
             {
-                Position = pos,
-                Scale = scale,
-                Rotation = default,
-            });
-            ecb.SetComponent(1, body, new LocalTransform
-            {
-                Position = pos,
-                Scale = scale,
-                Rotation = default,
+                worldTransform = trans,
             });
             ecb.SetComponent(1, body, new MaterialColor
             {

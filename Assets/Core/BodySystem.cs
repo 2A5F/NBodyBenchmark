@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Latios.Transforms;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
-using Unity.Transforms;
 using UnityEngine;
 
 namespace Core
@@ -21,6 +20,7 @@ namespace Core
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<Init>();
             bodyType = state.GetComponentTypeHandle<Body>();
             bodyLastPosType = state.GetComponentTypeHandle<BodyLastPos>();
             bodyVelocityType = state.GetComponentTypeHandle<BodyVelocity>();
@@ -133,7 +133,7 @@ namespace Core
                 var velocity = direct * force * delta;
 
                 selfVelocity.velocity += velocity;
-                
+
                 // see Vector3.ClampMagnitude()
                 var len_sq = math.lengthsq(selfVelocity.velocity);
                 if (len_sq > speedLimit * speedLimit)
@@ -150,12 +150,11 @@ namespace Core
         public float delta;
 
         private void Execute(
-            ref WorldTransform wt, ref LocalTransform lt, ref BodyLastPos lastPos, in BodyVelocity velocity)
+            ref WorldTransform wt, ref BodyLastPos lastPos, in BodyVelocity velocity)
         {
-            lastPos.lastPos = wt.Position;
-            var np = wt.Position + velocity.velocity * delta;
-            wt.Position = np;
-            lt.Position = np;
+            lastPos.lastPos = wt.position;
+            var np = wt.position + velocity.velocity * delta;
+            wt.worldTransform.position = np;
         }
     }
 
