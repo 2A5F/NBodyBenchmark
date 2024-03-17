@@ -1,10 +1,10 @@
-﻿using Latios.Transforms;
-using Unity.Burst;
+﻿using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
+using Unity.Transforms;
 
 namespace Core
 {
@@ -150,11 +150,11 @@ namespace Core
         public float delta;
 
         private void Execute(
-            ref WorldTransform wt, ref BodyLastPos lastPos, in BodyVelocity velocity)
+            ref LocalTransform lt, ref BodyLastPos lastPos, in BodyVelocity velocity)
         {
-            lastPos.lastPos = wt.position;
-            var np = wt.position + velocity.velocity * delta;
-            wt.worldTransform.position = np;
+            lastPos.lastPos = lt.Position;
+            var np = lt.Position + velocity.velocity * delta;
+            lt.Position = np;
         }
     }
 

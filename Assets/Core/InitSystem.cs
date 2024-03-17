@@ -1,4 +1,3 @@
-using Latios.Transforms;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -6,6 +5,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Rendering;
 using UnityEngine;
+using Unity.Transforms;
 using Random = Unity.Mathematics.Random;
 
 namespace Core
@@ -74,12 +74,11 @@ namespace Core
             var scale = math.pow(weight, 0.5f);
 
             var body = ecb.Instantiate(0, prefab.bodyPrefab);
-            var trans = TransformQvvs.identity;
-            trans.position = pos;
-            trans.scale = scale;
-            ecb.SetComponent(1, body, new WorldTransform
+            ecb.SetComponent(1, body, new LocalTransform
             {
-                worldTransform = trans,
+                Position = pos,
+                Scale = scale,
+                Rotation = quaternion.identity,
             });
             ecb.SetComponent(1, body, new MaterialColor
             {

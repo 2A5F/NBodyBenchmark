@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.latios.latiosframework": "0.9.4",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.entities": "1.1.0-pre.3",
     "com.unity.entities.graphics": "1.1.0-pre.3",

@@ -1,30 +1,5 @@
 {
   "dependencies": {
-    "com.latios.latiosframework": {
-      "version": "0.9.4",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.entities": "1.1.0-pre.3",
-        "com.unity.audio.dspgraph": "0.1.0-preview.22",
-        "com.unity.entities.graphics": "1.1.0-pre.3",
-        "com.unity.burst": "1.8.8"
-      },
-      "url": "https://package.openupm.com"
-    },
-    "com.unity.audio.dspgraph": {
-      "version": "0.1.0-preview.22",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.burst": "1.6.4",
-        "com.unity.media.utilities": "0.1.0-preview.13",
-        "com.unity.test-framework": "1.1.27",
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.video": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.burst": {
       "version": "1.8.12",
       "depth": 1,
@@ -124,17 +99,6 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.media.utilities": {
-      "version": "0.1.0-preview.13",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.mathematics": "1.2.1",
-        "com.unity.burst": "1.5.3",
-        "com.unity.test-framework": "1.1.23"
-      },
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.mono-cecil": {
