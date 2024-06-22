@@ -1,0 +1,68 @@
+#pragma use_dxc
+#pragma kernel velocity
+#pragma kernel update
+
+struct VFXBodyData
+{
+    float4 color;
+    float4 pos;
+    float4 lastPos;
+    float4 velocity;
+    float weight;
+    float size;
+};
+
+RWStructuredBuffer<VFXBodyData> BodyBuffer;
+
+float delta;
+float speedLimit;
+
+float length_sq(float3 x) { return dot(x, x); }
+float distance_sq(float3 x, float3 y) { return length_sq(y - x); }
+
+[numthreads(1024,1,1)]
+void velocity(uint3 id : SV_DispatchThreadID)
+{
+    uint len, stride;
+    BodyBuffer.GetDimensions(len, stride);
+    if (id.x > len) return;
+
+    VFXBodyData self = BodyBuffer[id.x];
+
+    for (uint i = 0; i < len; i++)
+    {
+        if (i == id.x) continue;
+        VFXBodyData other = BodyBuffer[i];
+
+        float distance = distance_sq(other.lastPos.xyz, self.lastPos.xyz);
+        if (distance < pow(max(other.size, self.size), 2)) continue;
+
+        float force = other.weight / distance;
+        float3 direct = normalize(other.lastPos.xyz - self.lastPos.xyz);
+        float3 velocity = direct * force * delta;
+
+        self.velocity.xyz += velocity;
+
+        float len_sq = length_sq(self.velocity.xyz);
+        if (len_sq > speedLimit * speedLimit)
+        {
+            self.velocity.xyz = self.velocity.xyz / sqrt(len_sq) * speedLimit;
+        }
+    }
+
+    BodyBuffer[id.x].velocity.xyz = self.velocity.xyz;
+}
+
+[numthreads(1024,1,1)]
+void update(uint3 id : SV_DispatchThreadID)
+{
+    uint len, stride;
+    BodyBuffer.GetDimensions(len, stride);
+    if (id.x > len) return;
+
+    VFXBodyData self = BodyBuffer[id.x];
+
+    BodyBuffer[id.x].lastPos.xyz = self.pos.xyz;
+    float3 np = self.pos.xyz + self.velocity.xyz * delta;
+    BodyBuffer[id.x].pos.xyz = np;
+}

@@ -87,8 +87,19 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:VisualElement class="menu-item input-item">
+                    <ui:VisualElement class="box">
+                        <ui:VisualElement class="input-field-like">
+                            <ui:VisualElement class="box" style="flex: 1">
+                                <Core.Utils.UISwitch name="use-gpu-switch" label="GPU模式" value="true" class="input-field" />
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="重新开始后生效" display-tooltip-when-elided="true" style="opacity: 0.125" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                  
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement style="height: 300px;"/>
+            <ui:VisualElement style="height: 300px;" />
             <ui:VisualElement class="bottom" style="width: 100%; position: absolute; bottom: 0;">
                 <ui:VisualElement name="version-item" class="menu-item menu-item-btn">
                     <ui:VisualElement class="box">

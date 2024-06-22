@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7613883301566241425}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1423459780466703435
 MonoBehaviour:
@@ -55,6 +55,9 @@ MonoBehaviour:
   sourceAsset: {fileID: 9197481963319205126, guid: f9b13db2d571a034dbbb9d2445e47e48,
     type: 3}
   m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
 --- !u!114 &7613883301566241426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5781053814d4b7090c951a6cc5ca273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraStart: {fileID: 0}
+  mainCamera: {fileID: 0}
   document: {fileID: 1423459780466703435}
+  vfx: {fileID: 0}
+  bodyShader: {fileID: 7200000, guid: 75f2340942eb10441af5acaa80d894eb, type: 3}
   count: 100
   speedLimit: 299792450
   spaceSize: 200
@@ -88,6 +95,7 @@ MonoBehaviour:
   maxWeight: 100
   minVelocity: 0
   maxVelocity: 10
+  useGpu: 1
 --- !u!114 &1517077559134467532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +151,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 8739e250-d71d-4b37-99c3-c60a4da3d046
-    m_ActionName: Menu/OpenMenu[/Keyboard/escape]
+    m_ActionName: 'Menu/OpenMenu[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7613883301566241426}
@@ -159,7 +167,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: c78d419f-a381-41d9-9f3b-01d00a640c63
-    m_ActionName: Menu/Pause[/Keyboard/space,/XInputControllerWindows/buttonEast]
+    m_ActionName: 'Menu/Pause[/Keyboard/space,/XInputControllerWindows/buttonEast]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7613883301566241426}
@@ -175,7 +183,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 68fed524-1c45-4329-bd3e-833fca0b876b
-    m_ActionName: Menu/1[/Keyboard/1]
+    m_ActionName: 'Menu/1[/Keyboard/1]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7613883301566241426}
@@ -191,7 +199,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 12e15a9e-6947-48f4-ba60-0b98746a7991
-    m_ActionName: Menu/2[/Keyboard/2]
+    m_ActionName: 'Menu/2[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7613883301566241426}
@@ -207,7 +215,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 3e418475-ea6b-468e-9b07-b08a49ce4487
-    m_ActionName: Menu/3[/Keyboard/3]
+    m_ActionName: 'Menu/3[/Keyboard/3]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7613883301566241426}
@@ -223,7 +231,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 395ea6a9-f2a8-4eb5-a8db-5ed62a66f6ba
-    m_ActionName: Menu/4[/Keyboard/4]
+    m_ActionName: 'Menu/4[/Keyboard/4]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7613883301566241426}
@@ -239,7 +247,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: c329a344-0518-4a26-a005-a895a92bb5c8
-    m_ActionName: Menu/5[/Keyboard/5]
+    m_ActionName: 'Menu/5[/Keyboard/5]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menu

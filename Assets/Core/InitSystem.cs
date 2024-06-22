@@ -1,3 +1,4 @@
+using Core.Gpu;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -10,22 +11,20 @@ using Random = Unity.Mathematics.Random;
 
 namespace Core
 {
-
+    
     [BurstCompile]
     public partial struct InitSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<Init>();
             state.RequireForUpdate(
-                new EntityQueryBuilder(Allocator.Temp).WithAll<Init>().WithNone<Inited>().Build(ref state)
+                new EntityQueryBuilder(Allocator.Temp).WithAll<Init>().WithNone<Inited, VfxInited>().Build(ref state)
             );
             state.RequireForUpdate<InitPrefab>();
         }
-
-        [BurstCompile]
-        public void OnDestroy(ref SystemState state) { }
-
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -34,7 +33,7 @@ namespace Core
             var init = SystemAPI.GetComponent<Init>(initEntity);
             
             using var ecb = new EntityCommandBuffer(Allocator.TempJob);
-
+            
             var seed = init.useSeed ? init.seed : (uint)(Time.unscaledTimeAsDouble * 1000);
             
             var job = new InitJob
@@ -46,13 +45,14 @@ namespace Core
             };
             var handle = job.Schedule(init.count, 1);
             handle.Complete();
-
-            ecb.AddComponent<Inited>(initEntity);
+            
+            if (init.useGpu) ecb.AddComponent<VfxInited>(initEntity);
+            else ecb.AddComponent<Inited>(initEntity);
             
             ecb.Playback(state.EntityManager);
         }
     }
-
+    
     [BurstCompile]
     public struct InitJob : IJobParallelFor
     {
@@ -60,43 +60,58 @@ namespace Core
         public EntityCommandBuffer.ParallelWriter ecb;
         public InitPrefab prefab;
         public Init init;
-
+        
         public void Execute(int index)
         {
             var rand = Random.CreateFromIndex(seed + (uint)index);
-
+            
             var pos = rand.NextFloat3(-init.spaceSize, init.spaceSize);
             var weight = rand.NextFloat(init.minWeight, init.maxWeight);
             var color = rand.NextFloat3(0.5f, 2.5f);
             var velocity = math.normalize(rand.NextFloat3(-1, 1)) * rand.NextFloat(init.minVelocity, init.maxVelocity);
-
+            
             var scale = math.pow(weight, 0.5f);
-
-            var body = ecb.Instantiate(0, prefab.bodyPrefab);
-            ecb.SetComponent(1, body, new LocalTransform
+            
+            if (init.useGpu)
             {
-                Position = pos,
-                Scale = scale,
-                Rotation = default,
-            });
-            ecb.SetComponent(1, body, new MaterialColor
+                init.vfxBodyData[index] = new VFXBodyData
+                {
+                    color = new float4(color, 1),
+                    pos = new float4(pos, 0),
+                    lastPos = new float4(pos, 0),
+                    velocity = new float4(velocity, 0),
+                    weight = weight,
+                    size = scale,
+                };
+            } 
+            else
             {
-                Value = new float4(color, 1),
-            });
-            ecb.AddComponent(2, body, new Body
-            {
-                weight = weight,
-                size = scale,
-            });
-            ecb.AddComponent(2, body, new BodyLastPos
-            {
-                lastPos = pos,
-            });
-            ecb.AddComponent(2, body, new BodyVelocity
-            {
-                velocity = velocity,
-            });
+                var body = ecb.Instantiate(0, prefab.bodyPrefab);
+                ecb.SetComponent(1, body, new LocalTransform
+                {
+                    Position = pos,
+                    Scale = scale,
+                    Rotation = default,
+                });
+                ecb.SetComponent(1, body, new MaterialColor
+                {
+                    Value = new float4(color, 1),
+                });
+                ecb.AddComponent(2, body, new Body
+                {
+                    weight = weight,
+                    size = scale,
+                });
+                ecb.AddComponent(2, body, new BodyLastPos
+                {
+                    lastPos = pos,
+                });
+                ecb.AddComponent(2, body, new BodyVelocity
+                {
+                    velocity = velocity,
+                });
+            }
         }
     }
-
+    
 }

@@ -1,10 +1,13 @@
 ﻿using System;
+using Core.Gpu;
+using Core.Utils;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
 using Random = Unity.Mathematics.Random;
 
 namespace Core
@@ -16,6 +19,10 @@ namespace Core
         public Transform mainCamera;
         
         public UIDocument document;
+        
+        public VisualEffect vfx;
+        public GraphicsBuffer BodyBuffer;
+        public ComputeShader bodyShader;
         
         [Header("默认参数")]
         [Min(0)]
@@ -32,6 +39,7 @@ namespace Core
         public float minVelocity;
         [Min(0)]
         public float maxVelocity = 10;
+        public bool useGpu = true;
         
         private VisualElement root;
         private Button startBtn;
@@ -47,11 +55,14 @@ namespace Core
         private FloatField maxWeightInput;
         private FloatField minVelocityInput;
         private FloatField maxVelocityInput;
+        private UISwitch useGpuSwitch;
         
         private Init init;
         
         private void Start()
         {
+            VfxData.Init(vfx, bodyShader);
+            
             root = document.rootVisualElement;
             startBtn = root.Q<Button>("start-btn");
             seedStartBtn = root.Q<Button>("seed-start-btn");
@@ -66,6 +77,7 @@ namespace Core
             maxWeightInput = root.Q<FloatField>("max-weight-input");
             minVelocityInput = root.Q<FloatField>("min-velocity-input");
             maxVelocityInput = root.Q<FloatField>("max-velocity-input");
+            useGpuSwitch = root.Q<UISwitch>("use-gpu-switch");
             
             startBtn.RegisterCallback<ClickEvent>(OnClickStartBtn);
             seedStartBtn.RegisterCallback<ClickEvent>(OnClickSeedStartBtn);
@@ -81,6 +93,7 @@ namespace Core
             maxWeightInput.RegisterCallback<ChangeEvent<float>>(OnMaxWeightChange);
             minVelocityInput.RegisterCallback<ChangeEvent<float>>(OnMinVelocityChange);
             maxVelocityInput.RegisterCallback<ChangeEvent<float>>(OnMaxVelocityChange);
+            useGpuSwitch.RegisterCallback<ChangeEvent<bool>>(OnUseGpuChange);
             
             init = new Init
             {
@@ -92,12 +105,15 @@ namespace Core
                 maxWeight = maxWeight,
                 minVelocity = minVelocity,
                 maxVelocity = maxVelocity,
+                useGpu = useGpu,
             };
             
             UpdateInputs();
             ReGenSeed();
             ReInit();
         }
+        
+        #region Event
         
         private void OnClickStartBtn(ClickEvent e)
         {
@@ -173,6 +189,16 @@ namespace Core
             UpdateInputs();
         }
         
+        private void OnUseGpuChange(ChangeEvent<bool> evt)
+        {
+            init.useGpu = evt.newValue;
+            UpdateInputs();
+        }
+        
+        #endregion
+        
+        #region UpdateInputs
+        
         private void UpdateInputs()
         {
             countInput.value = init.count;
@@ -182,7 +208,12 @@ namespace Core
             maxWeightInput.value = init.maxWeight;
             minVelocityInput.value = init.minVelocity;
             maxVelocityInput.value = init.maxVelocity;
+            useGpuSwitch.value = init.useGpu;
         }
+        
+        #endregion
+        
+        #region ReGenSeed
         
         private void ReGenSeed()
         {
@@ -192,17 +223,29 @@ namespace Core
             init.seed = (uint)seed.GetHashCode();
         }
         
+        #endregion
+        
+        #region ReInit
+        
         private void ReInit()
         {
             mainCamera.position = cameraStart.position;
             mainCamera.rotation = cameraStart.rotation;
+            if (useGpu) VfxData.ReSet(ref init);
+            else VfxData.Stop();
             InitControllerHybrid.ReInit(init, World.DefaultGameObjectInjectionWorld.EntityManager);
         }
+        
+        #endregion
+        
+        #region Stop
         
         private void Stop()
         {
             InitControllerHybrid.Stop(World.DefaultGameObjectInjectionWorld.EntityManager);
         }
+        
+        #endregion
     }
     
     [BurstCompile]
