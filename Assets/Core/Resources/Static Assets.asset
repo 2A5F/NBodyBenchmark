@@ -15,7 +15,5 @@ MonoBehaviour:
   assets:
   - name: UiBlur.rendertexture
     asset: {fileID: 8400000, guid: 6fa5929da8e2cf04c9bc60be8429f5cb, type: 2}
-  - name: UiBlur.BoxBlur.shader
-    asset: {fileID: 4800000, guid: 6c3beb227bb344109814fa7a6cc4c9fd, type: 3}
-  - name: UiBlur.GaussianBlur.shader
-    asset: {fileID: 4800000, guid: 35ec408a41d64fa0bb803d6613dde188, type: 3}
+  - name: DualKawaseBlur.mat
+    asset: {fileID: 2100000, guid: 1e8bd0090d4cb5047aa9469d2f5500c2, type: 2}

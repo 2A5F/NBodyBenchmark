@@ -73,12 +73,6 @@ namespace Core
             var scale = math.pow(weight, 0.5f);
 
             var body = ecb.Instantiate(0, prefab.bodyPrefab);
-            ecb.SetComponent(1, body, new WorldTransform
-            {
-                Position = pos,
-                Scale = scale,
-                Rotation = default,
-            });
             ecb.SetComponent(1, body, new LocalTransform
             {
                 Position = pos,

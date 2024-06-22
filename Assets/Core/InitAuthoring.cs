@@ -25,7 +25,8 @@ namespace Core
         {
             public override void Bake(InitAuthoring authoring)
             {
-                AddComponent(new Init
+                var e = GetEntity(TransformUsageFlags.None);
+                AddComponent(e, new Init
                 {
                     useSeed = false,
                     count = authoring.count,

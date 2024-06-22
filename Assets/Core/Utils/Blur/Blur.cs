@@ -4,13 +4,9 @@ using UnityEngine.UIElements;
 
 namespace Core.Utils
 {
-
-    public class Blur : VisualElement
+    [UxmlElement]
+    public partial class Blur : VisualElement
     {
-        public new class UxmlFactory : UxmlFactory<Blur, UxmlTraits> { }
-
-        public new class UxmlTraits : VisualElement.UxmlTraits { }
-
         public static readonly RenderTexture BlurTexture = StaticAssets.Get<RenderTexture>("UiBlur.rendertexture");
 
         public Blur()

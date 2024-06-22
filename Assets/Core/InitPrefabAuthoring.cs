@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core
 {
-
+    
     public class InitPrefabAuthoring : MonoBehaviour
     {
         public GameObject bodyPrefab;
@@ -12,12 +12,13 @@ namespace Core
         {
             public override void Bake(InitPrefabAuthoring authoring)
             {
-                AddComponent(new InitPrefab
+                var e = GetEntity(TransformUsageFlags.None);
+                AddComponent(e, new InitPrefab
                 {
-                    bodyPrefab = GetEntity(authoring.bodyPrefab),
+                    bodyPrefab = GetEntity(authoring.bodyPrefab, TransformUsageFlags.WorldSpace),
                 });
             }
         }
     }
-
+    
 }
