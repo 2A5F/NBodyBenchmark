@@ -2,9 +2,19 @@
 
 一个用 unity ecs 写的 n 体计算基准测试
 
-以下是使用 7950x 运行一万个天体的帧率
+---
+
+以下是使用 7950x + 7900xtx cpu 模式运行一万个天体的帧率
 
 ![image](https://user-images.githubusercontent.com/13982338/217540428-c051f6e1-e95a-4507-99c8-eb7c855e6028.png)
+
+---
+
+以下是使用 7950x + 7900xtx gpu 模式运行六万个天体的帧率  
+ > *为什么是 65535，因为到计算着色器 dispatch 上限了，有空改成多 pass*
+
+![image](https://github.com/2A5F/NBodyBenchmark/assets/13982338/1325665f-5b12-422a-b895-300bfdaea4cc)
+
 
 ### 操作
 
