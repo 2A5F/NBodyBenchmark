@@ -7,15 +7,14 @@
 
 以下是使用 7950x + 7900xtx cpu 模式运行一万个天体的帧率
 
-![image](https://user-images.githubusercontent.com/13982338/217540428-c051f6e1-e95a-4507-99c8-eb7c855e6028.png)
+![3](https://github.com/2A5F/NBodyBenchmark/assets/13982338/1477932f-de21-469f-bbf5-0c723af458a3)
 
 ---
 
-以下是使用 7950x + 7900xtx gpu 模式运行六万个天体的帧率  
- > *为什么是 65535，因为到计算着色器 dispatch 上限了，有空改成多 pass*
+以下是使用 7950x + 7900xtx gpu 模式运行十万个天体的帧率和一万个天体的帧率  
 
-![image](https://github.com/2A5F/NBodyBenchmark/assets/13982338/1325665f-5b12-422a-b895-300bfdaea4cc)
-
+![1](https://github.com/2A5F/NBodyBenchmark/assets/13982338/457c4609-e23a-48aa-8f2d-171298ece803)
+![2](https://github.com/2A5F/NBodyBenchmark/assets/13982338/3a568a08-f032-4034-9778-c8a16f287f3b)
 
 ### 操作
 
