@@ -67,14 +67,8 @@
             float2 uv = GetFullScreenTriangleTexCoord(i.vertexID);
 
             float2 scale = _MainTex_TexelSize.xy * 0.5;
-            // float2 halfPixel = 0.5 / (_ViewSize / 2.0);
 
             o.uv0 = uv;
-            // o.uv1 = uv - halfPixel * _Offset;
-            // o.uv2 = uv + halfPixel * _Offset;
-            // o.uv3 = uv + float2(halfPixel.x, -halfPixel.y) * _Offset;
-            // o.uv4 = uv - float2(halfPixel.x, -halfPixel.y) * _Offset;
-
             o.uv1 = uv - scale * float2(1 + _Offset, 1 + _Offset);
             o.uv2 = uv + scale * float2(1 + _Offset, 1 + _Offset);
             o.uv3 = uv - float2(scale.x, -scale.y) * float2(1 + _Offset, 1 + _Offset);
@@ -101,17 +95,6 @@
             float2 uv = GetFullScreenTriangleTexCoord(i.vertexID);
 
             float2 scale = _MainTex_TexelSize.xy * 0.5;
-            // float2 halfPixel = 0.5 / (_ViewSize * 2.0);
-            //
-            // o.uv0 = uv + float2(-halfPixel.x * 2.0, 0.0) * _Offset;
-            //
-            // o.uv1 = uv + float2(-halfPixel.x, halfPixel.y) * _Offset;
-            // o.uv2 = uv + float2(0.0, halfPixel.y * 2.0) * _Offset;
-            // o.uv3 = uv + float2(halfPixel.x, halfPixel.y) * _Offset;
-            // o.uv4 = uv + float2(halfPixel.x * 2.0, 0.0) * _Offset;
-            // o.uv5 = uv + float2(halfPixel.x, -halfPixel.y) * _Offset;
-            // o.uv6 = uv + float2(0.0, -halfPixel.y * 2.0) * _Offset;
-            // o.uv7 = uv + float2(-halfPixel.x, -halfPixel.y) * _Offset;
 
             float2 offset = float2(1 + _Offset, 1 + _Offset);
 
@@ -145,6 +128,9 @@
         Pass
         {
             Name "Down"
+            
+            ZWrite Off
+            ZTest Always
 
             HLSLPROGRAM
             #pragma vertex vert_down
@@ -154,6 +140,9 @@
         Pass
         {
             Name "Up"
+            
+            ZWrite Off
+            ZTest Always
 
             HLSLPROGRAM
             #pragma vertex vert_up

@@ -8,7 +8,7 @@ namespace Core
 {
     
     [UpdateAfter(typeof(VfxInitSystem))]
-    public partial struct VfxDotsSystem : ISystem
+    public partial struct VfxBodySystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -30,14 +30,17 @@ namespace Core
             var velocity = VfxData.BodyShaderVelocity;
             var update = VfxData.BodyShaderUpdate;
             
+            var groups = buffer.count / 1024;
+            if (buffer.count % 1024 > 0) groups += 1;
+            
             shader.SetFloat(Delta, math.min(Time.deltaTime, 1));
             shader.SetFloat(SpeedLimit, init.speedLimit);
             
             shader.SetBuffer(velocity, BodyBuffer, buffer);
-            shader.Dispatch(velocity, buffer.count, 1, 1);
+            shader.Dispatch(velocity, groups, 1, 1);
             
             shader.SetBuffer(update, BodyBuffer, buffer);
-            shader.Dispatch(update, buffer.count, 1, 1);
+            shader.Dispatch(update, groups, 1, 1);
         }
         
         private static readonly int BodyBuffer = Shader.PropertyToID("BodyBuffer");

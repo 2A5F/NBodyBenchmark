@@ -16,6 +16,7 @@ RWStructuredBuffer<VFXBodyData> BodyBuffer;
 
 float delta;
 float speedLimit;
+uint offset;
 
 float length_sq(float3 x) { return dot(x, x); }
 float distance_sq(float3 x, float3 y) { return length_sq(y - x); }
@@ -25,13 +26,14 @@ void velocity(uint3 id : SV_DispatchThreadID)
 {
     uint len, stride;
     BodyBuffer.GetDimensions(len, stride);
-    if (id.x > len) return;
+    uint index = id.x + offset;
+    if (index > len) return;
 
-    VFXBodyData self = BodyBuffer[id.x];
+    VFXBodyData self = BodyBuffer[index];
 
     for (uint i = 0; i < len; i++)
     {
-        if (i == id.x) continue;
+        if (i == index) continue;
         VFXBodyData other = BodyBuffer[i];
 
         float distance = distance_sq(other.lastPos.xyz, self.lastPos.xyz);
@@ -50,7 +52,7 @@ void velocity(uint3 id : SV_DispatchThreadID)
         }
     }
 
-    BodyBuffer[id.x].velocity.xyz = self.velocity.xyz;
+    BodyBuffer[index].velocity.xyz = self.velocity.xyz;
 }
 
 [numthreads(1024,1,1)]
@@ -58,11 +60,12 @@ void update(uint3 id : SV_DispatchThreadID)
 {
     uint len, stride;
     BodyBuffer.GetDimensions(len, stride);
-    if (id.x > len) return;
+    uint index = id.x + offset;
+    if (index > len) return;
 
-    VFXBodyData self = BodyBuffer[id.x];
+    VFXBodyData self = BodyBuffer[index];
 
-    BodyBuffer[id.x].lastPos.xyz = self.pos.xyz;
+    BodyBuffer[index].lastPos.xyz = self.pos.xyz;
     float3 np = self.pos.xyz + self.velocity.xyz * delta;
-    BodyBuffer[id.x].pos.xyz = np;
+    BodyBuffer[index].pos.xyz = np;
 }
