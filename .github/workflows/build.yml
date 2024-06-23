@@ -5,17 +5,16 @@ on:
 
 jobs:
   build:
-  
-    runs-on: ubuntu-latest
-  
-    name: Build for ${{ matrix.targetPlatform }}
     strategy:
       fail-fast: false
       matrix:
-        targetPlatform:
-          - StandaloneWindows64
-          - StandaloneLinux64
-          
+        include:
+          - os: windows-latest
+            targetPlatform: StandaloneWindows64
+          - os: ubuntu-latest
+            targetPlatform: StandaloneLinux64
+    runs-on: ${{ matrix.os }}
+    name: Build for ${{ matrix.targetPlatform }}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/cache@v3
